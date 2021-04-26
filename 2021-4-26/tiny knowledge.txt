@@ -9,3 +9,9 @@
 
 4. NIO编程主要使用的是ServerSocketChannel和SocketChannel，通过Selector来进行channel选取，选取的channel由event来决定。一个线程
      维护一个Selector，一个Selector可以完成对多个Channel的监控。具体的实现见NIO.java
+
+5. 为什么获取到selectionKey的Set集合，对selectionKey关联的各个集合进行具体操作之后，需要将该SelectionKey从集合中移除呢？
+	需要注意的是，在selector中存在keys()方法，这个方法可以返回所有在该selector注册且没有cancel的selectionKey（即channel）
+	而selectedKeys()方法是从keys()集合中获取就绪的channel个数，如果不将已经执行的channel从selectedKeys的集合中移除
+          那么将不会执行获取操作，也即该channel不会进行操作。因此为了避免这种情况发生，应该在对channel执行完操作后将其从selectedKeys
+          集合中移除
