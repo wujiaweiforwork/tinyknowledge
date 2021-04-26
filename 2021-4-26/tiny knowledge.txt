@@ -1,0 +1,11 @@
+1. InetSocketAddress用于实现套接字地址（ip地址 + 端口）。ip地址由InetAddress实现，端口由int数字实现
+	InetSocketAddress(InetAddress ip ， int port );
+2. InetAddress类提供了操作IP地址的各种方案。
+	InetAddress.getByName()
+	InetAddress.getByAddress()
+
+3. BIO编程主要使用的是ServerSocket和Socket，通过其中的InputStream和OutputStream实现，这样的方式弊端在于服务器每次接受到请求的
+     时候会分配一个线程来进行处理，这样会消耗很多的资源，具体的实现见BIO.java
+
+4. NIO编程主要使用的是ServerSocketChannel和SocketChannel，通过Selector来进行channel选取，选取的channel由event来决定。一个线程
+     维护一个Selector，一个Selector可以完成对多个Channel的监控。具体的实现见NIO.java
