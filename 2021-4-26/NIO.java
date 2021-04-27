@@ -33,7 +33,7 @@ public class NIOServer{
 				}
 
 				if(key.isReadable()){
-					SocketChannel socketChannel = key.channel();
+					SocketChannel socketChannel = (SocketChannel)key.channel();
 					//获取该socketChannel的关联项,即byteBuffer
 					ByteBuffer buffer = (ByteBuffer)socketChannel.attachment();
 					socketChannel.read(buffer);
