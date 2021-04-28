@@ -1,7 +1,5 @@
 package com.jarvis.nio.chatsystem;
 
-
-
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
@@ -11,8 +9,6 @@ import java.util.Iterator;
 import java.util.Set;
 
 public class NIOServer {
-
-
     private Selector selector;
     private ServerSocketChannel listenChannel;
     private static final int PORT = 6667;
