@@ -13,7 +13,7 @@ public class NettyServer{
 			bootstrap.group(bossGroup , workerGroup)
 				.channel(NioServerSocketChannel.class)
 				.option(ChannelOption.SO_BACKLOG , 128)
-				.childOption(ChannelOption.SP_KEEPALIVE,true)
+				.childOption(ChannelOption.SO_KEEPALIVE,true)
 				.childHandler(new ChannelInitializer<SocketChannel>(){
 					@Override
 					protected void initChannel(SocketChannel  ch) throws Exception{
