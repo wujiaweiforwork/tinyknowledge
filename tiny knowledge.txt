@@ -15,3 +15,9 @@
 	而selectedKeys()方法是从keys()集合中获取就绪的channel个数，如果不将已经执行的channel从selectedKeys的集合中移除
           那么将不会执行获取操作，也即该channel不会进行操作。因此为了避免这种情况发生，应该在对channel执行完操作后将其从selectedKeys
           集合中移除
+
+6. 为什么在每个channel对应的pipeLine中，要先将编解码器添加进去——addLast()
+	因为在pipeline执行时，会根据channelHandlerContext的inbound和outbound属性判断是出站还是入站操作
+	入站操作是从head到tail ， 出站操作是从tail到head，因此虽然解码handler和编码handler都是在最开始的时候添加，
+         但是执行的时期是不同的。入站handler执行前执行解码操作 ， 出站handler在其他handler执行之后执行编码操作。
+         因此编解码handler需要在最初始时添加
